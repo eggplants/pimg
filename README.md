@@ -1,8 +1,10 @@
 # `pimg`
 
+[![PyPI version](https://badge.fury.io/py/pimg.svg)](https://badge.fury.io/py/pimg)
+
 - CLI (and library) for saving an image in clipboard to a local file with PyGObject
 - Inspired by [PasteImg](https://github.com/cas--/PasteImg)
-  - requires Python 2.x and PyGTK (Last-Modified: 2011)
+  - requires Python 2.x and PyGTK (Last-Modified: May 2011)
 
 ## Install
 
