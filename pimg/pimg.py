@@ -3,11 +3,11 @@ from typing import Any
 
 import gi
 
-if gi.get_required_version('Gdk') is None:
-    gi.require_version('Gdk', '3.0')
+if gi.get_required_version("Gdk") is None:  # type: ignore[attr-defined]
+    gi.require_version("Gdk", "3.0")
 
-if gi.get_required_version('Gtk') is None:
-    gi.require_version('Gtk', '3.0')
+if gi.get_required_version("Gtk") is None:  # type: ignore[attr-defined]
+    gi.require_version("Gtk", "3.0")
 
 from gi.repository import Gdk, Gtk
 
@@ -24,9 +24,9 @@ class PimgGLibError(Exception):
     pass
 
 
-class Pimg():
+class Pimg:
 
-    EXTS = ['png', 'bmp', 'jpg', 'jpeg', 'tiff']
+    EXTS = ["png", "bmp", "jpg", "jpeg", "tiff"]
 
     def __init__(self, savefile: Any) -> None:
         self.save_fname = savefile
@@ -34,28 +34,28 @@ class Pimg():
 
     def _check_file_format(self) -> str:
         ext = os.path.splitext(self.save_fname)[1]
-        ext = str(ext).replace('.', '')
-        if ext == '':
+        ext = str(ext).replace(".", "")
+        if ext == "":
             raise PimgSavePathError(
-                'Save filename \'' + self.save_fname
-                + '\' does not contain an extension.')
+                "Save filename '" + self.save_fname + "' does not contain an extension."
+            )
         elif ext not in self.EXTS:
             raise PimgSavePathError(
-                'Save file extension \'' + ext
-                + '\' seem to be invalid. ')
+                "Save file extension '" + ext + "' seem to be invalid. "
+            )
         else:
-            return ext
+            return str(ext)
 
     def get_clip_img(self) -> None:
         try:
             self._get_clip_img()
-        except gi.repository.GLib.GError as e:
+        except Exception as e:
             raise PimgGLibError(str(e))
 
     def _get_clip_img(self) -> None:
         cb = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
         pixbuf = cb.wait_for_image()
         if pixbuf is None:
-            raise PimgClipBoardError('Image does not exist in your clipboard.')
+            raise PimgClipBoardError("Image does not exist in your clipboard.")
         else:
             pixbuf.savev(self.save_fname, self.ext, [], [])

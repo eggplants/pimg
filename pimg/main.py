@@ -10,14 +10,17 @@ from . import pimg
 
 def parse_args(test: Optional[Tuple[str]] = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        prog='pimg',
+        prog="pimg",
         formatter_class=argparse.RawDescriptionHelpFormatter,
-        description='Save an image in clipboard')
+        description="Save an image in clipboard",
+    )
 
-    parser.add_argument('savefile', metavar='savefile', type=str,
-                        help='File name to save')
-    parser.add_argument('-V', '--version', action='version',
-                        version='%(prog)s {}'.format(__version__))
+    parser.add_argument(
+        "savefile", metavar="savefile", type=str, help="File name to save"
+    )
+    parser.add_argument(
+        "-V", "--version", action="version", version="%(prog)s {}".format(__version__)
+    )
 
     if test is None:
         args = parser.parse_args()
@@ -41,7 +44,7 @@ def main() -> None:
         exit(1)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     try:
         main()
     except KeyboardInterrupt:
