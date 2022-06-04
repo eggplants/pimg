@@ -23,7 +23,7 @@ pip install pimg
 - Then, to save the image in clipboard in local:
 
 ```shellsession
-$ pimg sth.png
+$ pimg g sth.png
 $ file sth.png
 sth.png: PNG image data, ...
 ```
@@ -32,16 +32,40 @@ sth.png: PNG image data, ...
 
 ```shellsession
 $ pimg -h
-usage: pimg [-h] [-V] savefile
+usage: pimg [-h] [-V] {get,g,copy,c} ...
 
-Save an image in clipboard
+Save an image in clipboard / Copy an image to clipboard
 
 positional arguments:
-  savefile       File name to save
+  {get,g,copy,c}
+    get (g)       get/save an image from clipboard
+    copy (c)      copy a local image to clipboard
 
-optional arguments:
-  -h, --help     show this help message and exit
-  -V, --version  show program's version number and exit
+options:
+  -h, --help      show this help message and exit
+  -V, --version   show program's version number and exit
+```
+
+```shellsession
+$ pimg g -h
+usage: pimg get [-h] PATH
+
+positional arguments:
+  PATH        path of save file
+
+options:
+  -h, --help  show this help message and exit
+```
+
+```shellsession
+$ pimg c -h
+usage: pimg copy [-h] PATH
+
+positional arguments:
+  PATH        path of image to copy
+
+options:
+  -h, --help  show this help message and exit
 ```
 
 ## license

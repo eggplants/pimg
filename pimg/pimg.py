@@ -1,5 +1,6 @@
+from __future__ import annotations
+
 import os
-from typing import Any
 
 import gi
 
@@ -28,34 +29,45 @@ class Pimg:
 
     EXTS = ["png", "bmp", "jpg", "jpeg", "tiff"]
 
-    def __init__(self, savefile: Any) -> None:
-        self.save_fname = savefile
-        self.ext = self._check_file_format()
+    def __init__(self) -> None:
+        pass
 
-    def _check_file_format(self) -> str:
-        ext = os.path.splitext(self.save_fname)[1]
-        ext = str(ext).replace(".", "")
-        if ext == "":
-            raise PimgSavePathError(
-                "Save filename '" + self.save_fname + "' does not contain an extension."
-            )
-        elif ext not in self.EXTS:
-            raise PimgSavePathError(
-                "Save file extension '" + ext + "' seem to be invalid. "
-            )
-        else:
-            return str(ext)
-
-    def get_clip_img(self) -> None:
+    def get_clip_img(self, save_fname: str) -> None:
         try:
-            self._get_clip_img()
+            self.__get_clip_img(save_fname)
         except Exception as e:
             raise PimgGLibError(str(e))
 
-    def _get_clip_img(self) -> None:
+    def __get_clip_img(self, save_fname: str) -> None:
+        ext = self.__check_file_format(save_fname)
         cb = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
         pixbuf = cb.wait_for_image()
         if pixbuf is None:
             raise PimgClipBoardError("Image does not exist in your clipboard.")
         else:
-            pixbuf.savev(self.save_fname, self.ext, [], [])
+            pixbuf.savev(save_fname, ext, [], [])
+
+    def __check_file_format(self, filename: str) -> str:
+        _, ext = os.path.splitext(filename)
+        ext = str(ext).replace(".", "")
+        if ext == "":
+            raise PimgSavePathError(
+                f"Save filename {repr(filename)} does not contain an extension."
+            )
+        elif ext not in self.EXTS:
+            raise PimgSavePathError(
+                f"Save file extension {repr(ext)} seem to be invalid."
+            )
+        else:
+            return str(ext)
+
+    def copy_local_img(self, img_path: str) -> None:
+        try:
+            self.__copy_local_img(img_path)
+        except Exception as e:
+            raise PimgGLibError(str(e))
+
+    def __copy_local_img(self, img_path: str) -> None:
+        cb = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
+        img = Gtk.Image.new_from_file(img_path)  # type: ignore[no-untyped-call]
+        cb.set_image(img)  # type: ignore[no-untyped-call]
