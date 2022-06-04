@@ -3,10 +3,10 @@ from typing import Any
 
 import gi
 
-if gi.get_required_version("Gdk") is None:  # type: ignore[attr-defined]
+if gi.get_required_version("Gdk") is None:
     gi.require_version("Gdk", "3.0")
 
-if gi.get_required_version("Gtk") is None:  # type: ignore[attr-defined]
+if gi.get_required_version("Gtk") is None:
     gi.require_version("Gtk", "3.0")
 
 from gi.repository import Gdk, Gtk
