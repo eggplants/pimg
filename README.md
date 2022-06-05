@@ -1,8 +1,6 @@
 # `pimg`
 
-[![PyPI version](https://badge.fury.io/py/pimg.svg)](https://badge.fury.io/py/pimg)
-
-[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/eggplants/pimg/master.svg)](https://results.pre-commit.ci/latest/github/eggplants/pimg/master)
+[![PyPI version](https://img.shields.io/pypi/v/pimg?color=blue)](https://pypi.org/project/pimg) [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/eggplants/pimg/master.svg)](https://results.pre-commit.ci/latest/github/eggplants/pimg/master)
 
 - CLI (and library) for saving an image in clipboard to a local file with PyGObject
 - Inspired by [PasteImg](https://github.com/cas--/PasteImg)
@@ -20,12 +18,16 @@ pip install pimg
   - e,g) Cropping a screen:
     - Ubuntu: Shift+PrtScn
     - Windows: Win+Shift+S
-- Then, to save the image in clipboard in local:
+- To save an image in clipboard in local:
 
-```shellsession
-$ pimg g sth.png
-$ file sth.png
-sth.png: PNG image data, ...
+```bash
+pimg g sth.png
+```
+
+- To copy a local image into clipboard:
+
+```bash
+pimg c sth.png
 ```
 
 ## Usage
