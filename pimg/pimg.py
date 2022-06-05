@@ -10,7 +10,7 @@ if gi.get_required_version("Gdk") is None:
 if gi.get_required_version("Gtk") is None:
     gi.require_version("Gtk", "3.0")
 
-from gi.repository import Gdk, Gtk
+from gi.repository import Gdk, GdkPixbuf, GLib, Gtk
 
 
 class PimgSavePathError(Exception):
@@ -63,11 +63,16 @@ class Pimg:
 
     def copy_local_img(self, img_path: str) -> None:
         try:
+            loop = GLib.MainLoop()
             self.__copy_local_img(img_path)
+            GLib.timeout_add(100, self.__copy_local_img, os.path.expanduser(img_path))
+            GLib.timeout_add(1000, loop.quit)
+            loop.run()
         except Exception as e:
             raise PimgGLibError(str(e))
 
     def __copy_local_img(self, img_path: str) -> None:
         cb = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
-        img = Gtk.Image.new_from_file(img_path)  # type: ignore[no-untyped-call]
-        cb.set_image(img)  # type: ignore[no-untyped-call]
+        pixbuf = GdkPixbuf.Pixbuf.new_from_file(img_path)
+        cb.set_image(pixbuf)
+        cb.store()
