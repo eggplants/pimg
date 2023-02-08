@@ -26,7 +26,6 @@ class PimgGLibError(Exception):
 
 
 class Pimg:
-
     EXTS = ["png", "bmp", "jpg", "jpeg", "tiff"]
 
     def __init__(self) -> None:
