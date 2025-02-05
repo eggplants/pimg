@@ -28,11 +28,11 @@ repos:
     hooks:
       - id: pyupgrade
   - repo: https://github.com/psf/black
-    rev: 24.10.0
+    rev: 25.1.0
     hooks:
       - id: black
   - repo: https://github.com/pycqa/isort
-    rev: 5.13.2
+    rev: 6.0.0
     hooks:
       - id: isort
   - repo: https://github.com/PyCQA/flake8
@@ -48,7 +48,7 @@ repos:
   #       files: ^pimg/
   #       args: [--strict]
   - repo: https://github.com/igorshubovych/markdownlint-cli
-    rev: v0.43.0
+    rev: v0.44.0
     hooks:
       - id: markdownlint
         args: [--disable=MD013]
