@@ -1,6 +1,22 @@
 # `pimg`
 
-[![PyPI version](https://img.shields.io/pypi/v/pimg?color=blue)](https://pypi.org/project/pimg) [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/eggplants/pimg/master.svg)](https://results.pre-commit.ci/latest/github/eggplants/pimg/master) [![Maintainability](https://api.codeclimate.com/v1/badges/9fbcf043ae0529a09696/maintainability)](https://codeclimate.com/github/eggplants/pimg/maintainability)
+[![PyPI version](
+  <https://img.shields.io/pypi/v/pimg?color=blue>
+  )](
+  <https://pypi.org/project/pimg>
+) [![pre-commit.ci status](
+  <https://results.pre-commit.ci/badge/github/eggplants/pimg/master.svg>
+  )](
+  <https://results.pre-commit.ci/latest/github/eggplants/pimg/master>
+) [![Maintainability](
+  <https://qlty.sh/badges/b5bbd1cc-cd7b-4beb-bcb5-8fec8591c700/maintainability.svg>
+  )](
+  <https://qlty.sh/gh/eggplants/projects/pimg>
+) [![Code Coverage](
+  <https://qlty.sh/badges/b5bbd1cc-cd7b-4beb-bcb5-8fec8591c700/test_coverage.svg>
+  )](
+  <https://qlty.sh/gh/eggplants/projects/pimg>
+)
 
 - CLI (and library) for saving an image in clipboard to a local file with PyGObject
 - Inspired by [PasteImg](https://github.com/cas--/PasteImg)

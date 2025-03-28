@@ -1,0 +1,8 @@
+{
+    "id": "pygobject-deps",
+    "name": "PyGObject Dependencies",
+    "version": "none",
+    "installsAfter": [
+        "ghcr.io/devcontainers/features/common-utils"
+    ]
+}
