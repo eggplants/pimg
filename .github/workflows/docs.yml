@@ -17,7 +17,11 @@ jobs:
       with:
         enable-cache: true
         cache-dependency-glob: uv.lock
-    - run: uv sync --only-group docs
+    - uses: awalsh128/cache-apt-pkgs-action@v1
+      with:
+        packages: libcairo2-dev gir1.2-gtk-4.0 libgirepository1.0-dev
+        version: 1
+    - run: uv sync --all-extras --dev
     - run: uv run task gendoc
     - uses: peaceiris/actions-gh-pages@v4
       with:
